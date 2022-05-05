@@ -5,6 +5,8 @@ for PROJECT in $(\
   --format="value(projectId)")
 do
   printf "%s:\n" ${PROJECT}
-  gcloud compute instances list --project ${PROJECT}
+  gcloud compute instances list \
+          --format="value(name,networkInterfaces.networkIP)" \
+          --project ${PROJECT}
   printf "\n"
 done
